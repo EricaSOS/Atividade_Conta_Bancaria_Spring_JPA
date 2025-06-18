@@ -4,7 +4,7 @@
  */
 package com.example.Atividade_Conta_Bancaria_Spring_JPA.repositorio;
 
-import com.example.Atividade_Conta_Bancaria_Spring_JPA.model.ContaBancaria;
+import com.example.Atividade_Conta_Bancaria_Spring_JPA.modelo.ContaBancaria;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RepositorioContaBancaria extends JpaRepository<ContaBancaria, Long>{

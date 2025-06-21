@@ -18,6 +18,11 @@ public class ControladorContaBancariaVersionada {
     public List<ContaBancariaVersionada> listar() {
         return repositorio.findAll();
     }
+    
+    @GetMapping("/{id}")
+    public ContaBancariaVersionada buscarPorId(@PathVariable Long id) {
+        return repositorio.findById(id).orElseThrow();
+    }
 
     @PostMapping
     public ContaBancariaVersionada criar(@RequestBody ContaBancariaVersionada conta) {

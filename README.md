@@ -40,15 +40,42 @@ As principais dependências do projeto estão no `pom.xml`:
 1. Clone o projeto e abra na sua IDE Java com suporte a Maven;
 2. Ao abrir e realizar as configurações necessárias, clique com o botão direito do mouse sobre o projeto e escolha a opção "Build";
 3. Após isso, execute a classe principal `AtividadeContaBancariaSpringJpaApplication.java`, para a subida do servidor;
-4. Se estiver tudo certo, o servidor será iniciado com sucesso. Você verá no terminal uma mensagem indicando o link de acesso: http://localhost:8080/contas;
+4. Se estiver tudo certo, o servidor será iniciado com sucesso. Você verá no terminal uma mensagem indicando o link de acesso: http://localhost:8080/contas ou http://localhost:8080/contas-versionadas;
 5. Logo depois, abra o browser e cole o link do passo anterior;
 6. Será exibida uma tela com a array vazia "[]";
 7. Para realizar os testes, pode-se usar o prompt cmd do windows, JMEter, console do h2, como se verá nos próximos tópicos;
 8. Para encerrar, basta clicar no botão stop existente no terminal do NetBeans.
 
----
+### 📬 Endpoints disponíveis
+Os endpoints abaixo, servem tanto para a versão simples (/contas), como para a versão com controle (/contas-versionadas):
+- POST /contas : Criar nova conta
+- GET /contas : Listar todas as contas
+- GET /contas/{id} : Buscar conta por ID
+- PUT /contas/{id}/deposito?valor=100 : Depositar valor
+- PUT /contas/{id}/retirada?valor=50 : Retirar valor
+- DELETE /contas/{id} : Excluir conta
 
+### 🧪 Testes com JMeter
+Todos os endpoints foram testados com o JMeter. Plano de testes salvo em: /testes/testes-conta-bancaria.jmx
 
+Para executar o teste, você deve seguir os seguintes passos:
+1. Instale o JMeter;
+2. Abra o plano de testes ".jmx", baixado;
+3. Clique em “Start” ▶️;
+4. Visualize os resultados nos painéis “Summary Report” ou “View Results Tree”.
+
+<b>O Plano de Testes possui dois grupos de Threads, um para a versão simples e o outro para a versão com controle. Para executar apenas uma delas, clique com o botão auxiliar do mouse sobre a Thread que deseja executar e clique em Start.<b>
+
+### 🧪 Testes manuais via terminal (curl)
+Digite os seguintes comandos no prompt Windows (cmd).
+- Criar nova conta : curl -X POST http://localhost:8080/contas-versionadas -H "Content-Type: application/json" -d "{\"nomeCliente\":\"Teste\",\"saldo\":100}"
+- Consultar conta por ID: curl http://localhost:8080/contas-versionadas/1
+- Consultar contas registradas: curl http://localhost:8080/contas-versionadas
+- Depositar valor: curl -X PUT "http://localhost:8080/contas-versionadas/1/deposito?valor=50"
+- Sacar/Retirar valor: curl -X PUT "http://localhost:8080/contas-versionadas/1/retirada?valor=30"
+- Deletar conta: curl -X DELETE http://localhost:8080/contas-versionadas/1
+
+<b>Para testar a versão simples, basta trocar "/contas-versionadas" por "/contas" nos comandos acima.<b>
 
 ## 📝 Observações
 

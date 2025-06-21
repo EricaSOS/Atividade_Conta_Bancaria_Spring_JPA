@@ -18,6 +18,11 @@ public class ControladorContaBancaria {
     public List<ContaBancaria> listar() {
         return repositorio.findAll();
     }
+    
+    @GetMapping("/{id}")
+    public ContaBancaria buscarPorId(@PathVariable Long id) {
+        return repositorio.findById(id).orElseThrow();
+    }
 
     @PostMapping
     public ContaBancaria criar(@RequestBody ContaBancaria conta) {

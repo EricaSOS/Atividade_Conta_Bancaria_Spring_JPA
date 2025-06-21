@@ -14,7 +14,8 @@ public class AtividadeContaBancariaSpringJpaApplication implements CommandLineRu
         @Override
         public void run(String... args) {
             System.out.println("*** Servidor iniciado com sucesso!");
-            System.out.println("*** Acesse: http://localhost:8080/contas");
+            System.out.println("*** Acesse a versão simples: http://localhost:8080/contas");
+            System.out.println("*** Acesse a versão com controle/versionamento: http://localhost:8080/contas-versionadas");
             System.out.println("*** Para parar o servidor, pressione o botão stop vermelho ou clique com o botão direito no projeto.");
         }
 
